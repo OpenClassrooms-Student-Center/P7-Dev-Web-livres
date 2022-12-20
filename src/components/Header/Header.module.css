@@ -1,0 +1,34 @@
+.Header{
+    font-family: 'Libre Baskerville', serif;
+    background-color: #FFFFFF;
+    height: 91px;
+    display: flex;
+    align-items: center;
+}
+
+.Header div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Header p {
+    font-size: 20px;
+}
+
+.Header ul {
+    display: flex;
+}
+
+.Header ul li {
+    padding-inline: 20px;
+    list-style-type: none;
+}
+
+.Header ul li a {
+    text-decoration: none;
+    color: black ;
+}
+
+.Header a.activeLink {
+    font-weight: bold;
+}

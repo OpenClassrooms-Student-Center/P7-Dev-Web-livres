@@ -1,0 +1,49 @@
+.BookItem{
+    display: flex;
+    text-decoration: none;
+    color: inherit;
+    width: 30%;
+    align-items: center;
+    margin-bottom: 85px;
+}
+.BookItem article {
+    display: flex;
+    align-items: center;
+}
+
+
+.BookItem img {
+    border-radius: 5px;
+}
+.BookItem h2 {
+    font-size: 18px;
+    font-weight: 700;
+    font-family: "Libre Baskerville", serif;
+    margin-bottom: 10px ;
+}
+
+.BookItem p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: #796157;
+    margin-bottom: 10px ;
+}
+.full {
+    color: #D9A963;
+    font-size: 23px;
+}
+.empty {
+    color : #F2E3CE;
+    font-size: 23px;
+}
+.BookInfo {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin-left: 18px;
+}
+.Rating{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}

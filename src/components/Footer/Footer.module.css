@@ -1,0 +1,26 @@
+.Footer {
+    width: 100%;
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: #2C1810
+}
+
+.MapBlock {
+    display: flex;
+    margin-block: 16px;
+    align-items: center;
+
+}
+.MapBlock a {
+    color: #796157;
+}
+.MapBlock img {
+    margin-right: 16px;
+}
+.MapLink {
+
+}

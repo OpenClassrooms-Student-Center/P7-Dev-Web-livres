@@ -1,0 +1,59 @@
+.Home {
+ position: relative;padding-top: 131px;
+
+}
+
+.banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 619px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+}
+
+.main {
+    width: 90%;
+    max-width: 1320px;
+    background-color: #FFFFFF;
+    margin: auto;
+    border-radius: 7px;
+    box-shadow:  0 4px 34px rgba(0, 0, 0, 0.07);;
+
+}
+
+.Home header {
+    text-align: center;
+    font-family: "Libre Baskerville", serif;
+    padding-top: 85px;
+}
+
+.Home header h1 {
+    font-style: italic;
+    font-size: 44px;
+    color: #796157;
+}
+
+.Home header p {
+    font-style: italic;
+    font-size: 28px;
+    padding-block: 10px;
+}
+
+button {
+    background-color: #D9A963;
+    padding: 20px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+}
+
+.bookList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-block: 140px;
+}

@@ -1,0 +1,235 @@
+[{
+  "id": "1",
+  "userId" : "1",
+  "title" : "Milwaukee Mission",
+  "author": "Elder Cooper",
+  "imageUrl" : "https://via.placeholder.com/206x260",
+  "year" : 2021,
+  "genre" : "Policier",
+  "ratings" : [{
+    "userId" : "1",
+    "grade": 5
+  },
+    {
+      "userId" : "1",
+      "grade": 5
+    },
+    {
+      "userId" : "1",
+      "grade": 5
+    },
+    {
+      "userId" : "1",
+      "grade": 5
+    }],
+  "averageRating": 3
+},
+  {
+    "id": "2",
+    "userId" : "1",
+    "title" : "Book for Esther",
+    "author": "Alabaster",
+    "imageUrl" : "https://via.placeholder.com/206x260",
+    "year" : 2022,
+    "genre" : "Paysage",
+    "ratings" : [{
+      "userId" : "1",
+      "grade": 5
+    },
+      {
+        "userId" : "1",
+        "grade": 5
+      },
+      {
+        "userId" : "1",
+        "grade": 5
+      },
+      {
+        "userId" : "1",
+        "grade": 5
+      }],
+    "averageRating": 4.2
+  },
+  {
+    "id": "3",
+    "userId" : "1",
+    "title" : "The Kinfolk Table",
+    "author": "Nathan Williams",
+    "imageUrl" : "https://via.placeholder.com/206x260",
+    "year" : 2022,
+    "genre" : "Cuisine",
+    "ratings" : [{
+      "userId" : "1",
+      "grade": 5
+    },
+      {
+        "userId" : "1",
+        "grade": 5
+      },
+      {
+        "userId" : "1",
+        "grade": 5
+      },
+      {
+        "userId" : "1",
+        "grade": 5
+      }],
+    "averageRating": 3
+  },
+  {
+    "id": "4",
+    "userId" : "1",
+    "title" : "Milwaukee Mission",
+    "author": "Elder Cooper",
+    "imageUrl" : "https://via.placeholder.com/206x260",
+    "year" : 2021,
+    "genre" : "Policier",
+    "ratings" : [{
+      "userId" : "1",
+      "grade": 5
+    },
+      {
+        "userId" : "1",
+        "grade": 5
+      },
+      {
+        "userId" : "1",
+        "grade": 5
+      },
+      {
+        "userId" : "1",
+        "grade": 5
+      }],
+    "averageRating": 3
+  },
+  {
+    "id": "5",
+    "userId" : "1",
+    "title" : "Book for Esther",
+    "author": "Alabaster",
+    "imageUrl" : "https://via.placeholder.com/206x260",
+    "year" : 2022,
+    "genre" : "Paysage",
+    "ratings" : [{
+      "userId" : "1",
+      "grade": 5
+    },
+      {
+        "userId" : "1",
+        "grade": 5
+      },
+      {
+        "userId" : "1",
+        "grade": 5
+      },
+      {
+        "userId" : "1",
+        "grade": 5
+      }],
+    "averageRating": 4
+  },
+  {
+    "id": "6",
+    "userId" : "1",
+    "title" : "The Kinfolk Table",
+    "author": "Nathan Williams",
+    "imageUrl" : "https://via.placeholder.com/206x260",
+    "year" : 2022,
+    "genre" : "Cuisine",
+    "ratings" : [{
+      "userId" : "1",
+      "grade": 5
+    },
+      {
+        "userId" : "1",
+        "grade": 5
+      },
+      {
+        "userId" : "1",
+        "grade": 5
+      },
+      {
+        "userId" : "1",
+        "grade": 5
+      }],
+    "averageRating": 3
+  },
+  {
+    "id": "7",
+    "userId" : "1",
+    "title" : "Milwaukee Mission",
+    "author": "Elder Cooper",
+    "imageUrl" : "https://via.placeholder.com/206x260",
+    "year" : 2021,
+    "genre" : "Policier",
+    "ratings" : [{
+      "userId" : "1",
+      "grade": 5
+    },
+      {
+        "userId" : "1",
+        "grade": 5
+      },
+      {
+        "userId" : "1",
+        "grade": 5
+      },
+      {
+        "userId" : "1",
+        "grade": 5
+      }],
+    "averageRating": 3
+  },
+  {
+    "id": "8",
+    "userId" : "1",
+    "title" : "Book for Esther",
+    "author": "Alabaster",
+    "imageUrl" : "https://via.placeholder.com/206x260",
+    "year" : 2022,
+    "genre" : "Paysage",
+    "ratings" : [{
+      "userId" : "1",
+      "grade": 5
+    },
+      {
+        "userId" : "1",
+        "grade": 5
+      },
+      {
+        "userId" : "1",
+        "grade": 5
+      },
+      {
+        "userId" : "1",
+        "grade": 5
+      }],
+    "averageRating": 4
+  },
+  {
+    "id": "9",
+    "userId" : "1",
+    "title" : "The Kinfolk Table",
+    "author": "Nathan Williams",
+    "imageUrl" : "https://via.placeholder.com/206x260",
+    "year" : 2022,
+    "genre" : "Cuisine",
+    "ratings" : [{
+      "userId" : "1",
+      "grade": 5
+    },
+      {
+        "userId" : "1",
+        "grade": 5
+      },
+      {
+        "userId" : "1",
+        "grade": 5
+      },
+      {
+        "userId" : "1",
+        "grade": 5
+      }],
+    "averageRating": 3
+  }
+]
