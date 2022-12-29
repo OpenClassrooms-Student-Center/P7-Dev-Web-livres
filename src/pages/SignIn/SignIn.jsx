@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import * as PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 import { API_ROUTES, APP_ROUTES } from '../../utils/constants';
 import { useUser } from '../../lib/customHooks';
-import { storeTokenInLocalStorage } from '../../lib/common';
+import { storeInLocalStorage } from '../../lib/common';
+import { ReactComponent as Logo } from '../../images/Logo.svg';
+import styles from './SignIn.module.css';
 
-function SignIn() {
+function SignIn({ setUser }) {
   const navigate = useNavigate();
   const { user, authenticated } = useUser();
   if (user || authenticated) {
@@ -15,7 +18,7 @@ function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-
+  const [notification, setNotification] = useState({ error: false, message: '' });
   const signIn = async () => {
     try {
       setIsLoading(true);
@@ -28,40 +31,74 @@ function SignIn() {
         },
       });
       if (!response?.data?.token) {
+        setNotification({ error: true, message: 'Une erreur est survenue' });
         console.log('Something went wrong during signing in: ', response);
         return;
       }
-      storeTokenInLocalStorage(response.data.token);
-      navigate(APP_ROUTES.DASHBOARD);
+      storeInLocalStorage(response.data.token, response.data.id);
+      setUser(response.data);
+      navigate('/');
     } catch (err) {
+      setNotification({ error: true, message: err.response.data.msg });
       console.log('Some error occured during signing in: ', err);
     } finally {
       setIsLoading(false);
     }
   };
 
+  const signUp = async () => {
+    try {
+      setIsLoading(true);
+      const response = await axios({
+        method: 'POST',
+        url: API_ROUTES.SIGN_UP,
+        data: {
+          email,
+          password,
+        },
+      });
+      if (!response?.data?.token) {
+        console.log('Something went wrong during signing up: ', response);
+        return;
+      }
+      setNotification({ error: false, message: 'Votre compte a bien été créé, vous pouvez vous connecter' });
+    } catch (err) {
+      console.log('Some error occured during signing up: ', err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  const errorClass = notification.error ? styles.Error : null;
   return (
-    <div className="w-full h-screen flex justify-center items-center bg-gray-800">
-      <div className="w-1/2 h-1/2 shadow-lg rounded-md bg-white p-8 flex flex-col">
-        <h2 className="text-center font-medium text-2xl mb-4">
-          Sign in
-        </h2>
-        <div className="flex flex-1 flex-col justify-evenly">
+    <div className={`${styles.SignIn} container`}>
+      <Logo />
+      <div className={`${styles.Notification} ${errorClass}`}>
+        {notification.message.length > 0 && <p>{notification.message}</p>}
+      </div>
+      <div className={styles.Form}>
+        <label htmlFor={email}>
+          <p>Adresse email</p>
           <input
-            className="border-2 outline-none p-2 rounded-md"
-            type="email"
-            placeholder="Enter Your Email"
+            className=""
+            type="text"
+            name="email"
+            id="email"
             value={email}
             onChange={(e) => { setEmail(e.target.value); }}
           />
+        </label>
+        <label htmlFor="password">
+          <p>Mot de passe</p>
           <input
             className="border-2 outline-none p-2 rounded-md"
             type="password"
-            placeholder="*******"
+            name="password"
+            id="password"
             value={password}
             onChange={(e) => { setPassword(e.target.value); }}
           />
-
+        </label>
+        <div className={styles.Submit}>
           <button
             type="submit"
             className="
@@ -70,26 +107,36 @@ function SignIn() {
             bg-gray-800  text-white hover:bg-gray-800"
             onClick={signIn}
           >
-            {
-                            isLoading
-                              ? <div className="mr-2 w-5 h-5 border-l-2 rounded-full animate-spin" /> : null
-                        }
+            {isLoading ? <div className="" /> : null}
             <span>
-              SIGN IN
+              Se connecter
+            </span>
+          </button>
+          <span>OU</span>
+          <button
+            type="submit"
+            className="
+            flex justify-center
+            p-2 rounded-md w-1/2 self-center
+            bg-gray-800  text-white hover:bg-gray-800"
+            onClick={signUp}
+          >
+            {
+                isLoading
+                  ? <div className="mr-2 w-5 h-5 border-l-2 rounded-full animate-spin" /> : null
+              }
+            <span>
+              {'S\'inscrire'}
             </span>
           </button>
         </div>
-        <div className="text-center text-sm">
-          Not a User?
-          <Link to="/signup">
-            <span className="font-medium text-gray-800 ml-1">
-              Sign Up
-            </span>
-          </Link>
-        </div>
+
       </div>
     </div>
   );
 }
 
+SignIn.propTypes = {
+  setUser: PropTypes.func.isRequired,
+};
 export default SignIn;

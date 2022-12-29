@@ -1,0 +1,13 @@
+.BestRatedBooks h2 {
+    font-family: "Libre Baskerville", serif;
+    font-size: 34px;
+    font-style: italic;
+    color: #796157;
+    margin-bottom: 2em;
+}
+
+.List {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}

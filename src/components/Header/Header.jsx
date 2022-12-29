@@ -1,11 +1,18 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { useUser } from '../../lib/customHooks';
+import { NavLink, useNavigate } from 'react-router-dom';
+
+import * as PropTypes from 'prop-types';
 import styles from './Header.module.css';
 import Logo from '../../images/Logo.png';
 
-function Header() {
-  const { connectedUser, auth } = useUser();
+function Header({ user, setUser }) {
+  const navigate = useNavigate();
+  const disconnect = () => {
+    localStorage.clear();
+    setUser(null);
+    navigate('/');
+  };
+
   return (
     <header className={styles.Header}>
       <div className="container">
@@ -13,11 +20,22 @@ function Header() {
         <ul>
           <li><NavLink to="/" end className={({ isActive }) => (isActive ? styles.activeLink : undefined)}>Accueil</NavLink></li>
           <li><NavLink to="/Ajouter" className={({ isActive }) => (isActive ? styles.activeLink : undefined)}>Ajouter un livre</NavLink></li>
-          <li>{(!connectedUser || !auth) ? <NavLink to="/Connexion" className={({ isActive }) => (isActive ? styles.activeLink : undefined)}>Se connecter</NavLink> : <NavLink to="/Deconnexion" className={({ isActive }) => (isActive ? styles.activeLink : undefined)}>Se déconnecter</NavLink> }</li>
+          <li>{!user ? <NavLink to="/Connexion" className={({ isActive }) => (isActive ? styles.activeLink : undefined)}>Se connecter</NavLink> : <span tabIndex={0} role="button" onKeyUp={disconnect} onClick={disconnect}>Se déconnecter</span> }</li>
         </ul>
       </div>
     </header>
   );
 }
 
+Header.propTypes = {
+  user: PropTypes.shape({
+    id: PropTypes.string,
+    token: PropTypes.string,
+  }),
+  setUser: PropTypes.func.isRequired,
+};
+
+Header.defaultProps = {
+  user: null,
+};
 export default Header;

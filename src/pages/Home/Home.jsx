@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import BookItem from '../../components/Books/BookItem/BookItem';
 import Banner from '../../images/home_banner.jpg';
 import styles from './Home.module.css';
@@ -8,7 +9,7 @@ function Home() {
   const [books, setBooks] = useState(null);
   const [loading, setLoading] = useState(true);
   // eslint-disable-next-line max-len
-  const displayBooks = () => (books ? books.map((book) => <BookItem book={book} key={book.id} />) : <h1>Vide</h1>);
+  const displayBooks = () => (books ? books.map((book) => <BookItem size={2} book={book} key={book.id} />) : <h1>Vide</h1>);
 
   useEffect(() => {
     async function getBooksList() {
@@ -28,7 +29,7 @@ function Home() {
         <header className={styles.head}>
           <h1>Nos Livres</h1>
           <p>à lire et à relire</p>
-          <button type="button">+ Ajouter un livre</button>
+          <Link to="/Ajouter" className="button">+ Ajouter un livre</Link>
         </header>
         <section className={styles.bookList}>
           {loading ? <h1>Chargement</h1> : displayBooks()}

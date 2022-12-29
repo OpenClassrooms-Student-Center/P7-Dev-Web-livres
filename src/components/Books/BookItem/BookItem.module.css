@@ -2,7 +2,8 @@
     display: flex;
     text-decoration: none;
     color: inherit;
-    width: 30%;
+    max-width: 360px;
+    width: 80%;
     align-items: center;
     margin-bottom: 85px;
 }
@@ -22,6 +23,12 @@
     margin-bottom: 10px ;
 }
 
+.BookItem h3 {
+    font-size: 18px;
+    font-weight: 700;
+    font-family: "Libre Baskerville", serif;
+    margin-bottom: 10px ;
+}
 .BookItem p {
     font-family: 'DM Sans', sans-serif;
     font-size: 14px;
@@ -46,4 +53,10 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
+}
+
+@media all and (max-width: 600px) {
+    .BookItem img {
+        width: 50%;
+    }
 }

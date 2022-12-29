@@ -58,9 +58,57 @@ code {
     monospace;
 }
 
+#root > div {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .container {
   width: 100%;
   max-width: 1440px;
   margin:auto;
 
+}
+
+.content-container {
+  width: 90%;
+  max-width: 1320px;
+  margin: auto;
+  padding-block: 5em;
+
+}
+
+.backArrow {
+  display: block;
+  margin-bottom: 5em;
+  color: #796157;
+  font-family: "DM Sans", sans-serif;
+
+  text-decoration: none;
+}
+
+h1 {
+  font-family: "Libre Baskerville", serif;
+  font-size: 44px;
+  font-style: italic;
+  color: #796157;
+}
+
+button, .button {
+  color: #2C1810;
+  background-color: #D9A963;
+  text-decoration: none;
+  padding: 20px;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  transition: 0.5s;
+}
+
+button:hover, .button:hover {
+  text-decoration: none;
+  background-color: #B99056;
+  color: #fff;
+  transition: 0.5s;
 }

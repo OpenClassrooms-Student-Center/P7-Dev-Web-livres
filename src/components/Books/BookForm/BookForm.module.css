@@ -1,0 +1,81 @@
+.Form{
+    background-color: #F9F3EE;
+    width: 30%;
+    margin: auto;
+    padding: 50px;
+    align-items: center;
+    margin-block: 50px;
+
+}
+.Form, .Form label {
+    display: flex;
+    flex-direction: column;
+    font-family: "DM Sans", sans-serif;
+    font-size: 18px;
+    line-height: 24px;
+
+}
+
+.Form input[type="file"]{
+ display: none;
+}
+
+.Form img {
+    width: 83px;
+    height: 83px;
+    object-fit: cover;
+    object-position: center;
+}
+.Form label {
+    width: 100%;
+}
+.Form label p {
+    margin-bottom: 15px;
+}
+
+.Form input {
+    height: 64px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 35px;
+
+}
+
+
+.Stars, .Stars label{
+    display: flex;
+    flex: 1;
+    margin-bottom: 22px;
+    width: 50%;
+    align-items: center;
+}
+
+.Stars input {
+    position: absolute;
+    left: -10000px
+}
+
+.AddImage {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 43px 81px;
+    border: dashed 1px #D9A963;
+    margin-bottom: 40px;
+}
+
+.AddImage img {
+    margin-right: 20px;
+}
+
+.AddImage p {
+    color: #929292;
+    font-size: 16px;
+}
+
+@media all and (max-width: 1300px) {
+    .Form {
+        width: 70%;
+    }
+}

@@ -4,7 +4,19 @@ import { Link } from 'react-router-dom';
 import { displayStars } from '../../../lib/functions';
 import styles from './BookItem.module.css';
 
-function BookItem({ book }) {
+function BookItem({ book, size }) {
+  let title;
+  switch (size) {
+    case 2:
+      title = <h2>{book.title}</h2>;
+      break;
+    case 3:
+      title = <h3>{book.title}</h3>;
+      break;
+    default:
+      title = <h2>{book.title}</h2>;
+      break;
+  }
   return (
     <Link to={`/livre/${book.id}`} className={styles.BookItem}>
       <article>
@@ -13,7 +25,7 @@ function BookItem({ book }) {
           <div className={styles.Rating}>
             {displayStars(book.averageRating)}
           </div>
-          <h2>{book.title}</h2>
+          {title}
           <p>{book.author}</p>
           <p>{book.year}</p>
           <p>{book.genre}</p>
@@ -24,6 +36,7 @@ function BookItem({ book }) {
 }
 
 BookItem.propTypes = {
+  size: PropTypes.number.isRequired,
   book: PropTypes.shape({
     id: PropTypes.string,
     userId: PropTypes.string,

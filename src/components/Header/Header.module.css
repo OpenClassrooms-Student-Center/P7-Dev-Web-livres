@@ -1,7 +1,7 @@
 .Header{
     font-family: 'Libre Baskerville', serif;
     background-color: #FFFFFF;
-    height: 91px;
+    min-height: 91px;
     display: flex;
     align-items: center;
 }
@@ -31,4 +31,20 @@
 
 .Header a.activeLink {
     font-weight: bold;
+}
+
+@media all and (max-width: 600px) {
+    .Header div {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .Header img {
+        margin-top: 20px;
+        width: 50%;
+    }
+
+    .Header ul li {
+        padding-block: 20px;
+    }
 }
