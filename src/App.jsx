@@ -12,6 +12,7 @@ import Footer from './components/Footer/Footer';
 import AddBook from './pages/AddBook/AddBook';
 import UpdateBook from './pages/updateBook/UpdateBook';
 import { useUser } from './lib/customHooks';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -23,6 +24,7 @@ function App() {
   return (
     <BrowserRouter>
       <div>
+        <ScrollToTop />
         <Header user={user} setUser={setUser} />
         <Routes>
           <Route index element={<Home />} />
