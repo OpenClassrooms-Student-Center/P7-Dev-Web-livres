@@ -80,7 +80,7 @@ export async function rateBook(id, userId, rating) {
   });
 
   try {
-    return await axios.post(`${API_ROUTES.BOOKS}/{${id}/rating`, data, {
+    return await axios.post(`${API_ROUTES.BOOKS}/${id}/rating`, data, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },

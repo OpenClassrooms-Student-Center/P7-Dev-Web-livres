@@ -35,7 +35,7 @@ function SignIn({ setUser }) {
         console.log('Something went wrong during signing in: ', response);
         return;
       }
-      storeInLocalStorage(response.data.token, response.data.id);
+      storeInLocalStorage(response.data.token, response.data.userId);
       setUser(response.data);
       navigate('/');
     } catch (err) {
