@@ -7,7 +7,7 @@ import { generateStarsInputs } from '../../../lib/functions';
 import { useFilePreview } from '../../../lib/customHooks';
 import addFileIMG from '../../../images/add_file.png';
 import styles from './BookForm.module.css';
-import { updateBook } from '../../../lib/common';
+import { updateBook, addBook } from '../../../lib/common';
 
 function BookForm({ book, validate }) {
   const userRating = book ? book.ratings.find((elt) => elt.userId === localStorage.getItem('id'))?.grade : 0;
@@ -49,8 +49,8 @@ function BookForm({ book, validate }) {
       if (!data.file[0]) {
         alert('Vous devez ajouter une image');
       }
-      //  const newBook = await addBook(data);
-      const newBook = true;
+      const newBook = await addBook(data);
+      // const newBook = true;
       if (!newBook.error) {
         validate(true);
       } else {
