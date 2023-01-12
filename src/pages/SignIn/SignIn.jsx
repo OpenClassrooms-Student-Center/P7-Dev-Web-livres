@@ -57,7 +57,7 @@ function SignIn({ setUser }) {
           password,
         },
       });
-      if (!response?.data?.token) {
+      if (!response?.data) {
         console.log('Something went wrong during signing up: ', response);
         return;
       }

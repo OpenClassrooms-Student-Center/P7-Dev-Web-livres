@@ -3,7 +3,6 @@ import {
   BrowserRouter, Route, Routes,
 } from 'react-router-dom';
 import SignIn from './pages/SignIn/SignIn';
-import SignUp from './pages/SignUp/SignUp';
 import Home from './pages/Home/Home';
 import Book from './pages/Book/Book';
 import { APP_ROUTES } from './utils/constants';
@@ -28,7 +27,6 @@ function App() {
         <Header user={user} setUser={setUser} />
         <Routes>
           <Route index element={<Home />} />
-          <Route path={APP_ROUTES.SIGN_UP} element={<SignUp />} />
           <Route path={APP_ROUTES.SIGN_IN} element={<SignIn setUser={setUser} />} />
           <Route path={APP_ROUTES.BOOK} element={<Book />} />
           <Route path={APP_ROUTES.UPDATE_BOOK} element={<UpdateBook />} />

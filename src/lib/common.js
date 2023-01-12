@@ -1,9 +1,18 @@
 import axios from 'axios';
 import { API_ROUTES } from '../utils/constants';
 
-export function storeInLocalStorage(token, id) {
+function formatBooks(bookArray) {
+  return bookArray.map((book) => {
+    const newBook = { ...book };
+    // eslint-disable-next-line no-underscore-dangle
+    newBook.id = newBook._id;
+    return newBook;
+  });
+}
+
+export function storeInLocalStorage(token, userId) {
   localStorage.setItem('token', token);
-  localStorage.setItem('id', id);
+  localStorage.setItem('userId', userId);
 }
 
 export function getFromLocalStorage(item) {
@@ -14,11 +23,11 @@ export async function getAuthenticatedUser() {
   const defaultReturnObject = { authenticated: false, user: null };
   try {
     const token = getFromLocalStorage('token');
-    const id = getFromLocalStorage('id');
+    const userId = getFromLocalStorage('userId');
     if (!token) {
       return defaultReturnObject;
     }
-    return { authenticated: true, user: { id, token } };
+    return { authenticated: true, user: { userId, token } };
   } catch (err) {
     console.error('getAuthenticatedUser, Something Went Wrong', err);
     return defaultReturnObject;
@@ -31,7 +40,9 @@ export async function getBooks() {
       method: 'GET',
       url: `${API_ROUTES.BOOKS}`,
     });
-    return response.data;
+    // eslint-disable-next-line array-callback-return
+    const books = formatBooks(response.data);
+    return books;
   } catch (err) {
     console.error(err);
     return [];
@@ -44,7 +55,10 @@ export async function getBook(id) {
       method: 'GET',
       url: `${API_ROUTES.BOOKS}/${id}`,
     });
-    return response.data;
+    const book = response.data;
+    // eslint-disable-next-line no-underscore-dangle
+    book.id = book._id;
+    return book;
   } catch (err) {
     console.error(err);
     return null;
@@ -57,7 +71,7 @@ export async function getBestRatedBooks() {
       method: 'GET',
       url: `${API_ROUTES.BEST_RATED}`,
     });
-    return response.data;
+    return formatBooks(response.data);
   } catch (e) {
     console.error(e);
     return [];
@@ -65,7 +79,11 @@ export async function getBestRatedBooks() {
 }
 export async function deleteBook(id) {
   try {
-    await axios.delete(`${API_ROUTES.BOOKS}/${id}`);
+    await axios.delete(`${API_ROUTES.BOOKS}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
     return true;
   } catch (err) {
     console.error(err);
@@ -74,18 +92,22 @@ export async function deleteBook(id) {
 }
 
 export async function rateBook(id, userId, rating) {
-  const data = JSON.stringify({
+  const data = {
     userId,
     rating: parseInt(rating, 10),
-  });
+  };
 
   try {
-    return await axios.post(`${API_ROUTES.BOOKS}/${id}/rating`, data, {
+    const response = await axios.post(`${API_ROUTES.BOOKS}/${id}/rating`, data, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json',
       },
     });
+    const book = response.data;
+    // eslint-disable-next-line no-underscore-dangle
+    book.id = book._id;
+    return book;
   } catch (e) {
     console.error(e);
     return e.message;
@@ -93,7 +115,7 @@ export async function rateBook(id, userId, rating) {
 }
 
 export async function addBook(data) {
-  const userId = localStorage.getItem('id');
+  const userId = localStorage.getItem('userId');
   const book = {
     userId,
     title: data.title,
@@ -102,11 +124,10 @@ export async function addBook(data) {
     genre: data.genre,
     ratings: [{
       userId,
-      grade: parseInt(data.rating, 10),
+      grade: data.rating ? parseInt(data.rating, 10) : 0,
     }],
     averageRating: parseInt(data.rating, 10),
   };
-
   const bodyFormData = new FormData();
   bodyFormData.append('book', JSON.stringify(book));
   bodyFormData.append('image', data.file[0]);
@@ -127,30 +148,29 @@ export async function addBook(data) {
 }
 
 export async function updateBook(data, id) {
-  const userId = localStorage.getItem('id');
+  const userId = localStorage.getItem('userId');
 
-  const bodyFormData = new FormData();
   let newData;
   const book = {
-    id,
     userId,
     title: data.title,
     author: data.author,
     year: data.year,
     genre: data.genre,
   };
+  console.log(data.file[0]);
   if (data.file[0]) {
-    bodyFormData.append('book', JSON.stringify(book));
-    bodyFormData.append('image', data.file[0]);
-    newData = { ...bodyFormData };
+    newData = new FormData();
+    newData.append('book', JSON.stringify(book));
+    newData.append('image', data.file[0]);
   } else {
-    newData = JSON.stringify(book);
+    newData = { ...book };
   }
 
   try {
     const newBook = await axios({
       method: 'put',
-      url: `${API_ROUTES.BOOKS}`,
+      url: `${API_ROUTES.BOOKS}/${id}`,
       data: newData,
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,

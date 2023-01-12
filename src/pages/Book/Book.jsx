@@ -32,7 +32,7 @@ function Book() {
 
   useEffect(() => {
     if (!userLoading && connectedUser && book?.title) {
-      const rate = book.ratings.find((elt) => elt.userId === connectedUser.id);
+      const rate = book.ratings.find((elt) => elt.userId === connectedUser.userId);
       if (rate) {
         setUserRated(true);
         setRating(parseInt(rate.grade, 10));
@@ -53,7 +53,6 @@ function Book() {
     const check = confirm('Etes vous sûr de vouloir supprimer ce livre ?');
     if (check) {
       const del = await deleteBook(book.id);
-      // const del = true;
       if (del) {
         setBook((oldValue) => ({ ...oldValue, delete: true }));
       }
@@ -67,7 +66,7 @@ function Book() {
       <div className={styles.Book}>
         <div className={styles.BookImage} style={{ backgroundImage: `url(${book.imageUrl})` }} />
         <div className={styles.BookContent}>
-          {book?.userId === connectedUser?.id ? (
+          {book?.userId === connectedUser?.userId ? (
             <div className={styles.Owner}>
               <p>Vous avez publié cet ouvrage, vous pouvez le :</p>
               <p>
@@ -81,7 +80,7 @@ function Book() {
           <BookInfo book={book} />
           <BookRatingForm
             userRated={userRated}
-            userId={connectedUser?.id}
+            userId={connectedUser?.userId}
             rating={rating}
             setRating={setRating}
             setBook={setBook}
