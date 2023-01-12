@@ -23,6 +23,12 @@
     margin-bottom: 10px ;
 }
 
+.BookImage {
+    width: 206px;
+    height: 260px;
+    object-position: center;
+    object-fit: contain;
+}
 .BookItem h3 {
     font-size: 18px;
     font-weight: 700;

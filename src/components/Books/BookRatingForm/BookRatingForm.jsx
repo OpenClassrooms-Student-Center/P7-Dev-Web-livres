@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import styles from './BookRatingForm.module.css';
-import { generateStarsInputs } from '../../../lib/functions';
+import { generateStarsInputs, displayStars } from '../../../lib/functions';
 import { APP_ROUTES } from '../../../utils/constants';
 import { useUser } from '../../../lib/customHooks';
 import { rateBook } from '../../../lib/common';
@@ -31,8 +31,10 @@ function BookRatingForm({
       navigate(APP_ROUTES.SIGN_IN);
     }
     const update = await rateBook(id, userId, rating);
-    if (update.book) {
-      setBook(update.book);
+    console.log(update);
+    if (update) {
+      // eslint-disable-next-line no-underscore-dangle
+      setBook({ ...update, id: update._id });
     } else {
       alert(update);
     }
@@ -42,9 +44,9 @@ function BookRatingForm({
       <form onSubmit={handleSubmit(onSubmit)}>
         <p>{rating > 0 ? 'Votre Note' : 'Notez cet ouvrage'}</p>
         <div className={styles.Stars}>
-          {generateStarsInputs(rating, register)}
+          {!userRated ? generateStarsInputs(rating, register) : displayStars(rating)}
         </div>
-        {!userRated ? <button type="submit">Valider</button> : <button type="submit">Effacer</button>}
+        {!userRated ? <button type="submit">Valider</button> : null}
       </form>
     </div>
   );

@@ -20,7 +20,7 @@ function BookItem({ book, size }) {
   return (
     <Link to={`/livre/${book.id}`} className={styles.BookItem}>
       <article>
-        <img src={book.imageUrl} alt={`${book.title}, ${book.author} - ${book.year}`} />
+        <img className={styles.BookImage} src={book.imageUrl} alt={`${book.title}, ${book.author} - ${book.year}`} />
         <div className={styles.BookInfo}>
           <div className={styles.Rating}>
             {displayStars(book.averageRating)}

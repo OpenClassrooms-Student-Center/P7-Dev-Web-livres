@@ -29,7 +29,7 @@ function Header({ user, setUser }) {
 
 Header.propTypes = {
   user: PropTypes.shape({
-    id: PropTypes.string,
+    userId: PropTypes.string,
     token: PropTypes.string,
   }),
   setUser: PropTypes.func.isRequired,

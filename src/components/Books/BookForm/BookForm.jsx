@@ -7,10 +7,10 @@ import { generateStarsInputs } from '../../../lib/functions';
 import { useFilePreview } from '../../../lib/customHooks';
 import addFileIMG from '../../../images/add_file.png';
 import styles from './BookForm.module.css';
-import { updateBook } from '../../../lib/common';
+import { updateBook, addBook } from '../../../lib/common';
 
 function BookForm({ book, validate }) {
-  const userRating = book ? book.ratings.find((elt) => elt.userId === localStorage.getItem('id'))?.grade : 0;
+  const userRating = book ? book.ratings.find((elt) => elt.userId === localStorage.getItem('userId'))?.grade : 0;
 
   const [rating, setRating] = useState(0);
 
@@ -49,15 +49,14 @@ function BookForm({ book, validate }) {
       if (!data.file[0]) {
         alert('Vous devez ajouter une image');
       }
-      //  const newBook = await addBook(data);
-      const newBook = true;
+      const newBook = await addBook(data);
       if (!newBook.error) {
         validate(true);
       } else {
         alert(newBook.message);
       }
     } else {
-      const updatedBook = await updateBook(data);
+      const updatedBook = await updateBook(data, data.id);
       if (!updatedBook.error) {
         navigate('/');
       } else {
@@ -69,6 +68,7 @@ function BookForm({ book, validate }) {
   const readOnlyStars = !!book;
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.Form}>
+      <input type="hidden" id="id" {...register('id')} />
       <label htmlFor="title">
         <p>Titre du livre</p>
         <input type="text" id="title" {...register('title')} />
@@ -117,6 +117,7 @@ function BookForm({ book, validate }) {
 BookForm.propTypes = {
   book: PropTypes.shape({
     id: PropTypes.string,
+    _id: PropTypes.string,
     userId: PropTypes.string,
     title: PropTypes.string,
     author: PropTypes.string,
