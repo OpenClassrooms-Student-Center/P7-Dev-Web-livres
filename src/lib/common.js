@@ -129,7 +129,7 @@ export async function addBook(data) {
   };
   const bodyFormData = new FormData();
   bodyFormData.append('book', JSON.stringify(book));
-  bodyFormData.append('image', data.file[0]);
+  bodyFormData.append('images', data.file[0]);
 
   try {
     return await axios({
