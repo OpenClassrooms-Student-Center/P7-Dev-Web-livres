@@ -64,7 +64,7 @@ function Book() {
   const bookContent = !loading && !book.delete ? (
     <div>
       <div className={styles.Book}>
-        <div className={styles.BookImage} style={{ backgroundImage: `url(${book.imageUrl})` }} />
+        <div className={styles.BookImage} style={{ backgroundImage: `url("${book.imageUrl}")` }} />
         <div className={styles.BookContent}>
           {book?.userId === connectedUser?.userId ? (
             <div className={styles.Owner}>
