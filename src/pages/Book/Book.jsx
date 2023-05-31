@@ -38,6 +38,8 @@ function Book() {
         setRating(parseInt(rate.grade, 10));
         setLoading(false);
       } else {
+        setUserRated(false);
+        setRating(0);
         setLoading(false);
       }
     } else if (!userLoading && !connectedUser && book) {
