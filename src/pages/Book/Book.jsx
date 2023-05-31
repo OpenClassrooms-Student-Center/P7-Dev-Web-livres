@@ -28,7 +28,7 @@ function Book() {
       }
     }
     getItem();
-  }, []);
+  }, [params.id]);
 
   useEffect(() => {
     if (!userLoading && connectedUser && book?.title) {
