@@ -39,6 +39,9 @@ export async function getBooks() {
     const response = await axios({
       method: 'GET',
       url: `${API_ROUTES.BOOKS}`,
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      }
     });
     // eslint-disable-next-line array-callback-return
     const books = formatBooks(response.data);
@@ -54,6 +57,9 @@ export async function getBook(id) {
     const response = await axios({
       method: 'GET',
       url: `${API_ROUTES.BOOKS}/${id}`,
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
     });
     const book = response.data;
     // eslint-disable-next-line no-underscore-dangle
@@ -70,6 +76,9 @@ export async function getBestRatedBooks() {
     const response = await axios({
       method: 'GET',
       url: `${API_ROUTES.BEST_RATED}`,
+      headers: {
+         Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
     });
     return formatBooks(response.data);
   } catch (e) {
