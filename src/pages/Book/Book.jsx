@@ -28,7 +28,7 @@ function Book() {
       }
     }
     getItem();
-  }, []);
+  }, [params.id]);
 
   useEffect(() => {
     if (!userLoading && connectedUser && book?.title) {
@@ -38,6 +38,8 @@ function Book() {
         setRating(parseInt(rate.grade, 10));
         setLoading(false);
       } else {
+        setUserRated(false);
+        setRating(0);
         setLoading(false);
       }
     } else if (!userLoading && !connectedUser && book) {
@@ -64,7 +66,7 @@ function Book() {
   const bookContent = !loading && !book.delete ? (
     <div>
       <div className={styles.Book}>
-        <div className={styles.BookImage} style={{ backgroundImage: `url(${book.imageUrl})` }} />
+        <div className={styles.BookImage} style={{ backgroundImage: `url("${book.imageUrl}")` }} />
         <div className={styles.BookContent}>
           {book?.userId === connectedUser?.userId ? (
             <div className={styles.Owner}>
