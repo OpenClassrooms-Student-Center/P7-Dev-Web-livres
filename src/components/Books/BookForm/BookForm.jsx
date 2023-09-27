@@ -49,6 +49,11 @@ function BookForm({ book, validate }) {
       if (!data.file[0]) {
         alert('Vous devez ajouter une image');
       }
+      if (!data.rating) {
+        /* eslint-disable no-param-reassign */
+        data.rating = 0;
+        /* eslint-enable no-param-reassign */
+      }
       const newBook = await addBook(data);
       if (!newBook.error) {
         validate(true);
