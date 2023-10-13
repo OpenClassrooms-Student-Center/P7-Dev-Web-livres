@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { getAuthenticatedUser, getBestRatedBooks } from './common';
+import { useState, useEffect } from "react";
+import { getAuthenticatedUser, getBestRatedBooks } from "./common";
 
 // eslint-disable-next-line import/prefer-default-export
 export function useUser() {
@@ -26,11 +26,12 @@ export function useBestRatedBooks() {
   useEffect(() => {
     async function getRatedBooks() {
       const books = await getBestRatedBooks();
+      console.log(books);
       setBestRatedBooks(books);
     }
     getRatedBooks();
   }, []);
-
+  console.log(bestRatedBooks);
   return { bestRatedBooks };
 }
 
